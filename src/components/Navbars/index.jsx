@@ -2,12 +2,14 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FaPencil } from "react-icons/fa6";
 import { ImBlogger } from "react-icons/im";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Example() {
+  const navigate = useNavigate()
+
   return (
     <Disclosure as="nav" className="bg-gray-200">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl py-4 md:py-0 px-2 sm:px-6 lg:px-4">
         <div className="relative flex items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -19,9 +21,9 @@ export default function Example() {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center py-4">
-              <p className='italic text-lg md:text-3xl font-bold landing_home_main_container p-2 rounded-full'>Blog Hive</p>
-            </div>
+              <div className="flex flex-shrink-0 items-center py-4 ">
+                <p onClick={() => navigate('/')} className='italic text-lg md:text-3xl font-bold landing_home_main_container p-2 rounded-full cursor-pointer hidden md:block'>Blog Hive</p>
+              </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                   <p className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'><ImBlogger color='black' size={14} className='inline me-2' />Your Blog</p>

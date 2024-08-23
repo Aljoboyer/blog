@@ -4,17 +4,18 @@ import { nameRegex, passwordRegex } from '../../../utils/regexData';
 import { toast } from 'react-toastify';
 import { useSignUpMutation } from '../../../redux/features/authApi';
 import SignupImg from '../../../assets/sign-up.jpg'
+import RootContainer from '../../../components/common/RootContainer';
 
 const SignUp = () => {
     const navigate = useNavigate()
     const [signUpData, setSignUpData] = useState({
         firstName: '', lastName: '',
-        email: '', company: '', password: '', reEnterPassword: '',
+        email: '', phone: '', password: '', reEnterPassword: '',
     })
    const [nameErr, setNameErr] = useState('')
    const [emailErr, setEmailErr] = useState('')
    const [passwordErr, setPasswordErr] = useState('');
-   const [companyErr, setCompanyErr] = useState('');
+   const [phoneErr, setphoneErr] = useState('');
    const [loading, setLoading] = useState(false)
    const [addSignUp, { }] = useSignUpMutation();
 
@@ -46,12 +47,12 @@ const SignUp = () => {
         setPasswordErr('Password should match with re-enter password')
         isValid = false
     }
-    if(!signUpData?.company){
-        setCompanyErr('Company name required')
+    if(!signUpData?.phone){
+        setphoneErr('phone name required')
         isValid = false
     }
-    if (nameRegex.test(signUpData?.company) === false   || signUpData?.company.trim().length === 0 ) {
-        setCompanyErr('Please write proper company name without special character and number')
+    if (nameRegex.test(signUpData?.phone) === false   || signUpData?.phone.trim().length === 0 ) {
+        setphoneErr('Please write proper phone name without special character and number')
         isValid = false
     }
     if(isValid){
@@ -62,7 +63,7 @@ const SignUp = () => {
    const signUpHandler = async () => {
     setLoading(true)
     const requestObj = {
-        merchantName: signUpData?.company,
+        merchantName: signUpData?.phone,
         firstName: signUpData?.firstName,
         lastName: signUpData?.lastName,
         email: signUpData?.email, 
@@ -111,101 +112,88 @@ const SignUp = () => {
   }
 
   return (
-    <div className='w-full h-fit xl:h-screen bg-black lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col '>
+<RootContainer>
+    <div className='w-full h-fit xl:h-screen bg-white lg:flex lg:flex-row md:flex md:flex-col sm:flex sm:flex-col '>
         <div className='w-full lg:w-1/2 mx-auto lg:mx-0'>
-            <div className='flex flex-row justify-between items-center px-4 md:px-10 lg:px-24 py-7'>
-               <h4 onClick={() => navigate('/login')} className='text-white  text-2xl  cursor-pointer'>LOGIN</h4>
-            </div>
+            <div className='px-4 md:px-10 lg:px-24 pt-7'>
+                    <div className='bg-black p-4 mt-7 rounded-lg'>
+                        <h4 className='text-white font-bold text-xl md:text-2xl lg:text-3xl italic '>Create Account</h4>
 
-           <div className='px-4 md:px-10 lg:px-24 pt-7'>
-                 <div className='bg-black p-4 mt-7 rounded-lg'>
-                      <h4 className='text-white font-bold text-xl md:text-2xl lg:text-3xl italic '>Details</h4>
-
-                      <div className='mt-7'>
-                          <label className='text-white font-medium block md:inline' htmlFor="email">Name *</label>
-                          <input 
-                          onChange={(e) => {
+                        <div className='mt-7'>
+                            <label className='text-white font-medium block md:inline' htmlFor="email">Name *</label>
+                            <input 
+                            onChange={(e) => {
                             setSignUpData({...signUpData, firstName: e.target.value})
                             setNameErr('')
-                          }}
-                          className='outline-none border-0 rounded ms-0 md:ms-14 p-2 w-full md:w-fit mt-2 md:mt-0 lg:w-2/6' placeholder='First Name'/>
-                          <input
-                           onChange={(e) => {
+                            }}
+                            className='outline-none border-0 rounded ms-0 md:ms-12 p-2 w-full md:w-fit mt-2 md:mt-0 lg:w-2/6' placeholder='First Name'/>
+                            <input
+                            onChange={(e) => {
                             setSignUpData({...signUpData, lastName: e.target.value})
                             setNameErr('')
-                          }}
-                          className='outline-none border-0 rounded ms-0 md:ms-2 lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0 w-full md:w-fit lg:w-2/6' placeholder='Last Name'/>
+                            }}
+                            className='outline-none border-0 rounded ms-0 md:ms-2 lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0 w-full md:w-fit lg:w-2/6' placeholder='Last Name'/>
 
                         {
                         nameErr && <div className=' mt-2 ms-16'>
-                       <p className='text-[12px] font-bold text-red-500 ms-0 md:ms-11  text-start'>{nameErr}</p>
-                       </div> 
-                       }
-                      </div>
-                     
-                      <div className='my-7 w-full'>
-                          <label className='text-white font-medium block md:inline' htmlFor="email">Email *</label>
-                          <input onChange={(e) => {
-                            setSignUpData({...signUpData, email: e.target.value})
-                            setEmailErr('')
-                          }} className='outline-none border-0 rounded ms-0 md:ms-14 p-2 w-full mt-2 md:mt-0 md:w-4/6 lg:w-1/2  xl:w-3/4' placeholder='Your Email'/>
-                          {
-                        emailErr && <div className=' mt-2 ms-14'>
-                       <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{emailErr}</p>
-                       </div> 
-                       }
-
-                      </div>
-
-                      <div className='mt-7'>
-                          <label className='text-white font-medium block md:inline' htmlFor="email">Password *</label>
-                          <input 
-                          onChange={(e) => {
-                            setSignUpData({...signUpData, password: e.target.value})
-                            setPasswordErr('')
-                          }}
-                          type='password'
-                          className='outline-none border-0 rounded ms-0 md:ms-7 mt-2 md:mt-0 p-2 w-full md:w-fit lg:w-2/6' placeholder='Enter new password'/>
-                          <input
-                            onChange={(e) => {
-                                setSignUpData({...signUpData, reEnterPassword: e.target.value})
-                                setPasswordErr('')
-                              }}
-                              type='password'
-                          className='outline-none border-0 rounded ms-0 md:ms-2 lg:ms-17 xl:ms-4 p-2 mt-4 xl:mt-0 w-full md:w-fit lg:w-2/6' placeholder='Re-enter your password'/>
-
-                          {
-                        passwordErr && <div className=' mt-2 ms-14'>
-                       <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{passwordErr}</p>
-                       </div> 
-                       }
-
-                      </div>
-
-                      <div className='mt-7'>
-                          <label className='text-white font-medium  block md:inline' htmlFor="email">Company *</label>
-                          <input
-                           onChange={(e) => {
-                            setSignUpData({...signUpData, company: e.target.value})
-                            setCompanyErr('')
-                          }}
-                          className='outline-none border-0 rounded ms-0 md:ms-6 mt-2 md:mt-0 w-full md:w-fit p-2' placeholder='Your company name'/>
-                          {
-                            companyErr && <div className=' mt-2 ms-14'>
-                        <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{companyErr}</p>
+                        <p className='text-[12px] font-bold text-red-500 ms-0 md:ms-11  text-start'>{nameErr}</p>
                         </div> 
                         }
-                      </div>
+                        </div>
+                        
+                        <div className='my-7 w-full'>
+                            <label className='text-white font-medium block md:inline' htmlFor="email">Email *</label>
+                            <input onChange={(e) => {
+                            setSignUpData({...signUpData, email: e.target.value})
+                            setEmailErr('')
+                            }} className='outline-none border-0 rounded ms-0 md:ms-12 p-2 w-full mt-2 md:mt-0 md:w-4/6 lg:w-1/2  xl:w-3/4' placeholder='Your Email'/>
+                            {
+                        emailErr && <div className=' mt-2 ms-14'>
+                        <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{emailErr}</p>
+                        </div> 
+                        }
 
-                      <div className='mt-4'>
-                          <label className='text-white font-medium' htmlFor="email">Accept *</label>
-                          <input type='radio' className='outline-none border-0 rounded ms-11 p-2' placeholder='Number'/>
-                          <label className='text-gray-400 ms-4' htmlFor="email">Terms</label>
-                      </div>
+                        </div>
 
-                      {
-                        loading ? <button className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Loading...</button> : <button onClick={validatehandler} className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Sign Up</button>
-                      }
+                        
+                        <div className='mt-7'>
+                            <label className='text-white font-medium  block md:inline' htmlFor="email">Phone *</label>
+                            <input
+                            onChange={(e) => {
+                            setSignUpData({...signUpData, phone: e.target.value})
+                            setphoneErr('')
+                            }}
+                            className='outline-none border-0 rounded ms-0 md:ms-11 mt-2 md:mt-0 w-full md:w-fit p-2' placeholder='Your phone name'/>
+                            {
+                            phoneErr && <div className=' mt-2 ms-14'>
+                        <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{phoneErr}</p>
+                        </div> 
+                        }
+                        </div>
+
+                        <div className='mt-7'>
+                            <label className='text-white font-medium block md:inline' htmlFor="email">Password *</label>
+                            <input 
+                            onChange={(e) => {
+                            setSignUpData({...signUpData, password: e.target.value})
+                            setPasswordErr('')
+                            }}
+                            type='password'
+                            className='outline-none border-0 rounded ms-0 md:ms-6 mt-2 md:mt-0 w-full md:w-fit p-2' placeholder='Enter new password'/>
+
+                            {
+                        passwordErr && <div className=' mt-2 ms-14'>
+                        <p className='text-[12px] font-bold text-red-500 ms-11  text-start'>{passwordErr}</p>
+                        </div> 
+                        }
+
+                        </div>
+
+                        {
+                        loading ? <button className='font-bold bg-white px-5 py-2 ms-24 rounded mt-7 '>Loading...</button> : <button onClick={validatehandler} className='font-bold side_bar_style px-5 py-2 ms-24 rounded mt-7 text-white'>Sign Up</button>
+                        }
+
+                        <p className='text-lg text-white italic my-4'>Already have an account?  <span onClick={() => navigate('/login')} className='font-bold text-blue-400 underline cursor-pointer'>Login</span></p>
                 </div>
             </div>
         </div>
@@ -214,6 +202,7 @@ const SignUp = () => {
             <img className='w-full h-full' src={SignupImg} alt="" />
         </div>
     </div>
+</RootContainer>
   )
 }
 

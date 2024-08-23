@@ -3,16 +3,13 @@ import './App.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LandingHome from './pages/common/LandingHome';
-import LandingNavBar from '../src/components/Navbars';
 import Login from './pages/Auth/Login/Login';
 import SignUp from './pages/Auth/SignUp/SignUp';
-import Footers from './components/Footers/Footers';
 
 function App() {
 
   return (
     <main className="w-full">
-      <LandingNavBar/>
        <ToastContainer/>
       <Router>
         <Routes>
@@ -21,7 +18,6 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </Router>
-      <Footers/>
     </main>
   )
 }
