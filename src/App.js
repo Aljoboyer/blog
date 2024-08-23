@@ -6,6 +6,7 @@ import LandingHome from './pages/common/LandingHome';
 import LandingNavBar from '../src/components/Navbars';
 import Login from './pages/Auth/Login/Login';
 import SignUp from './pages/Auth/SignUp/SignUp';
+import Footers from './components/Footers/Footers';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </Router>
+      <Footers/>
     </main>
   )
 }

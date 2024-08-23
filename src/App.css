@@ -11,6 +11,11 @@
     background-image: linear-gradient(to bottom , #1ED2FC, #1199EE,  #015FDF );
 }
 
+.footer_bg{
+    background-image: linear-gradient(to right , #015FDF , #1199EE, #1ED2FC);
+}
+
+
 .landing_home_header{
     background-image: url('./assets/blog_bg.jpg');
     background-repeat: no-repeat;
