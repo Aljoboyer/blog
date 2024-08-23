@@ -1,0 +1,19 @@
+.landing_home_main_container{
+    background-image: linear-gradient(to bottom , #015FDF , #1199EE, #1ED2FC);
+}
+
+.landing_page_iconBox{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-image: linear-gradient(to bottom , #1ED2FC,  #0359d2 );
+}
+
+.side_bar_style{
+    background-image: linear-gradient(to bottom , #1ED2FC, #1199EE,  #015FDF );
+}
+
+.landing_home_header{
+    background-image: url('./assets/blog_bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
