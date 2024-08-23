@@ -7,7 +7,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 const BlogDetails = () => {
   return (
     <RootContainer>
-        <div className='w-full w-9/12 mx-auto my-7'>
+        <div className='w-full lg:w-9/12 mx-auto my-7'>
             <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold'>The Death of Critical Thinking Will Kill Us Long Before AI.</h1>
 
             <div className='my-4'>

@@ -22,7 +22,7 @@ export default function Example() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center py-4 ">
-                <p onClick={() => navigate('/')} className='italic text-lg md:text-3xl font-bold landing_home_main_container p-2 rounded-full cursor-pointer hidden md:block'>Blog Hive</p>
+                <p onClick={() => navigate('/')} className='italic text-white text-lg md:text-3xl font-bold landing_home_main_container p-2 rounded-full cursor-pointer hidden md:block'>Blog Hive</p>
               </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
@@ -33,7 +33,7 @@ export default function Example() {
           </div>
           
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button className='p-2 bg-[#0359d2] text-white font-medium text-base md:text-lg rounded-md'>Get Started</button>
+            <button onClick={() => navigate('/login')} className='p-2 bg-[#0359d2] text-white font-medium text-base md:text-lg rounded-md'>Get Started</button>
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
