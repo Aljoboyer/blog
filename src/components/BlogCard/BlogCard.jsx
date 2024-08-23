@@ -1,10 +1,13 @@
 import React from 'react'
 import PlaceHolderImg from '../../assets/placeholder-image.webp'
 import { MdOutlinePerson } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const BlogCard = () => {
+  const navigate = useNavigate()
+
   return (
-    <div className='w-full blog_card p-4 cursor-pointer rounded-md'>
+    <div onClick={() => navigate(`/BlogDetails/${1}`)} className='w-full blog_card p-4 cursor-pointer rounded-md'>
         <div className='w-full md:w-[430px] md:h-[300px]'>
             <img src={PlaceHolderImg} className='card_img rounded-md' alt="" />
         </div>

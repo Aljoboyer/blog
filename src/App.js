@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import LandingHome from './pages/common/LandingHome';
 import Login from './pages/Auth/Login/Login';
 import SignUp from './pages/Auth/SignUp/SignUp';
+import BlogDetails from './pages/common/BlogDetails';
+import BlogWrite from './pages/user_pages/BlogWrite';
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
           <Route path="/" element={<LandingHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/BlogDetails/:id" element={<BlogDetails />} />
+          <Route path="/BlogWrite" element={<BlogWrite />} />
+
         </Routes>
       </Router>
     </main>

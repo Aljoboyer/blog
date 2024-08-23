@@ -27,7 +27,7 @@ export default function Example() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                   <p className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'><ImBlogger color='black' size={14} className='inline me-2' />Your Blog</p>
-                  <p className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'> <FaPencil color='black' size={14} className='inline me-2'/>Write</p>
+                  <p onClick={() => navigate('/BlogWrite')} className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'> <FaPencil color='black' size={14} className='inline me-2'/>Write</p>
               </div>
             </div>
           </div>
