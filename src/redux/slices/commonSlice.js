@@ -4,16 +4,16 @@ import {createSlice} from '@reduxjs/toolkit';
 export const commonSlice = createSlice({
   name: 'commonstoreslice',
   initialState: {
-    settingsCurrentTab: 0,
+    user: {},
   },
   reducers: {
-    setSettingsCurrentTab: (state, action) => {
-      state.settingsCurrentTab = action.payload  ;
+    setUserData: (state, action) => {
+      state.user = action.payload  ;
     },
   },
 });
 
-export const {setSettingsCurrentTab} =
+export const {setUserData} =
   commonSlice.actions;
 
 export const commonSliceReducer = commonSlice.reducer;

@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { useLogInMutation } from '../../../redux/features/authApi';
 import LoginImg from '../../../assets/login.jpg'
 import RootContainer from '../../../components/common/RootContainer';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../redux/slices/commonSlice';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -14,6 +16,7 @@ const Login = () => {
   })
   const [loading, setLoading] = useState(false)
   const [userLogin, { }] = useLogInMutation();
+  const dispatch = useDispatch()
 
   const validationHandler = () => {
     // console.log('clicked')
@@ -55,7 +58,8 @@ const Login = () => {
 
     if(response?.data?.token){
       localStorage.setItem('blog-token', response?.data?.token)
-      
+      dispatch(setUserData(response?.data?.result))
+
       toast.success('Signed-up successfully!', {
           position: "top-right",
           autoClose: 1500,
@@ -65,7 +69,7 @@ const Login = () => {
               setLoading(false)
               navigate('/')
           }
-          });
+        });
   }
   else if(response?.error?.data?.message == "User doesn't exist"){
     setLoginErr({...loginErr, emailErr: "User doesn't exist"})
