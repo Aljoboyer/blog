@@ -2,9 +2,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import RootContainer from '../../components/common/RootContainer';
 import BlogCard from '../../components/BlogCard/BlogCard';
+import { useGetBlogsQuery } from '../../redux/features/blogApi';
+import { FiLoader } from "react-icons/fi";
 
 const LandingHome = () => {
   const navigate = useNavigate()
+  const { data: blogData , isFetching} = useGetBlogsQuery({
+    refetchOnMountOrArgChange: true,
+  });
+  console.log('blogData --------->>', blogData, isFetching)
 
   return (
     <RootContainer>
@@ -19,13 +25,22 @@ const LandingHome = () => {
               </div>
         </section>
 
-        <section className='w-full lg:w-11/12	mx-auto my-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-4'>
-           {
-              [1,2,3,4,5,6,7,8,11,12,32,43,22,55]?.map((item) => (
-                <BlogCard/>
-              ))
-           }
-        </section>
+        {
+          isFetching ? <div className='h-full h-[500px] flex flex-row justify-center items-center'>
+            <FiLoader size={80}/>
+          </div> : <>
+            {
+              blogData && blogData?.length > 0 && <section className='w-full lg:w-11/12	mx-auto my-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-4'>
+              {
+                 blogData?.map((item) => (
+                   <BlogCard blog={item}/>
+                 ))
+              }
+           </section>
+            }
+          </>
+        }
+        
     </RootContainer>
 
   )

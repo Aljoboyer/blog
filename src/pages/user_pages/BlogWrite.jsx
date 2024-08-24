@@ -18,7 +18,6 @@ const BlogWrite = () => {
     const [titleErr, setTitleErr] = useState('')
     const [descriptionErr, setDescriptionErr] = useState('')
     const [imgErr, setImgErr] = useState('')
-    const blogToken = localStorage.getItem('blog-token')
     const userData = useSelector((state) => state.commonstore.user)
 
   const publishHandler = async() => {
@@ -46,7 +45,7 @@ const BlogWrite = () => {
      }
      console.log('Img Data', imgData)
      let response = await publishBlog(blogFormData);
-     
+
      if(response?.data?.msg){
       setLoading(false)
       toast.success('Blog Published', {
@@ -56,7 +55,7 @@ const BlogWrite = () => {
         theme: "light",
       });
      }
-     else if(response?.error?.data?.message){
+     else{
       setLoading(false)
       toast.error('Blog Publish Failed', {
         position: "top-right",
