@@ -114,7 +114,7 @@ const Login = () => {
       <div className='w-full lg:w-1/2 mx-auto lg:mx-0'>
 
           <div className='px-4 md:px-10 lg:px-24 pt-11'>
-            <h4 className='text-[#0359d2] font-bold text-xl md:text-2xl lg:text-3xl italic mt-11'>Your brand, our innovation-a perfect match <br /> in the digital revolation!</h4>
+            <h4 className='text-[#0359d2] font-bold text-xl md:text-2xl lg:text-3xl italic mt-11'>Your Knowledge, our flatform-a perfect match <br /> in the digital revolation!</h4>
 
                 <div className='bg-black p-4 mt-7 rounded-lg '>
                     <h4 className='text-white font-bold text-xl md:text-2xl lg:text-3xl italic '>Login</h4>

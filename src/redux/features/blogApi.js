@@ -57,7 +57,7 @@ const blogApi = api.injectEndpoints({
     }),
 
     deleteBlog: builder.mutation({
-      query: (blog_id) => ({
+      query: ({blog_id}) => ({
         url: `/blog/delete/${blog_id}`,
         method: 'DELETE',
         headers: {
