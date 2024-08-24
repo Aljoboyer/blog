@@ -7,6 +7,7 @@ import Login from './pages/Auth/Login/Login';
 import SignUp from './pages/Auth/SignUp/SignUp';
 import BlogDetails from './pages/common/BlogDetails';
 import BlogWrite from './pages/user_pages/BlogWrite';
+import PersonalBlogs from './pages/user_pages/PersonalBlogs';
 
 function App() {
 
@@ -19,7 +20,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/BlogDetails/:id" element={<BlogDetails />} />
-          <Route path="/BlogWrite" element={<BlogWrite />} />
+          <Route path="/BlogWrite/:id?" element={<BlogWrite />} />
+          <Route path="/PersonalBlogs/:id" element={<PersonalBlogs />} />
 
         </Routes>
       </Router>

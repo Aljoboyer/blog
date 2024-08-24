@@ -33,7 +33,7 @@ const ImageUpload = (props) => {
             <div className='flex flex-row justify-center'>
                 {preview ? 
                 <img
-                src={preview}
+                src={(editId && !imgData) ? `data:image/jpeg;base64,${preview}` : preview}
                 alt=""
                 className="w-300 h-300"
                 />

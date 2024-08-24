@@ -4,15 +4,18 @@ import { FaPencil } from "react-icons/fa6";
 import { ImBlogger } from "react-icons/im";
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
+import { useSelector } from 'react-redux';
 
 export default function Example() {
   const navigate = useNavigate()
   const blogToken = localStorage.getItem('blog-token')
+  const userData = useSelector((state) => state.commonstore.user)
 
   const logOutHandler = () => {
     localStorage.removeItem('blog-token')
     navigate('/')
   }
+
   return (
     <Disclosure as="nav" className="bg-gray-200">
       <div className="mx-auto max-w-7xl py-4 md:py-0 px-2 sm:px-6 lg:px-4">
@@ -33,7 +36,8 @@ export default function Example() {
             {
               blogToken && <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                  <p className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'><ImBlogger color='black' size={14} className='inline me-2' />Your Blog</p>
+                  <p onClick={() => navigate(`/PersonalBlogs/${userData?._id}`)} className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'><ImBlogger color='black' size={14} className='inline me-2' />Your Blog</p>
+
                   <p onClick={() => navigate('/BlogWrite')} className='rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 hover:text-blue-600 mt-4 cursor-pointer text-base md:text-lg'> <FaPencil color='black' size={14} className='inline me-2'/>Write</p>
               </div>
             </div>

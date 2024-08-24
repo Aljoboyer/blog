@@ -21,7 +21,7 @@ const blogApi = api.injectEndpoints({
         },
         body: data,
       }),
-      invalidatesTags: ['bloglist'],
+      invalidatesTags: ['bloglist', 'personalblogs'],
     }),
 
     getSingleBlog: builder.query({
@@ -32,6 +32,41 @@ const blogApi = api.injectEndpoints({
       providesTags: ['bloglist'],
     }),
 
+    getPersonalBlog: builder.query({
+      query: (user_id) =>({
+        url: `/blog/personalblogs/${user_id}`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${getAccessToken()}`
+        },
+      }),
+      providesTags: ['personalblogs'],
+    }),
+
+    updateBlog: builder.mutation({
+      query: (data ) => ({
+        url: '/blog/update',
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${getAccessToken()}`,
+          // 'Content-Type': 'application/json', 
+        },
+        body: data,
+      }),
+      invalidatesTags: ['personalblogs'],
+    }),
+
+    deleteBlog: builder.mutation({
+      query: (blog_id) => ({
+        url: `/blog/delete/${blog_id}`,
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${getAccessToken()}`,
+          // 'Content-Type': 'application/json', 
+        },
+      }),
+      invalidatesTags: ['personalblogs'],
+    }),
 
   }),
 });
@@ -39,5 +74,8 @@ const blogApi = api.injectEndpoints({
 export const {
   useCreateBlogMutation,
   useGetBlogsQuery,
-  useLazyGetSingleBlogQuery
+  useLazyGetSingleBlogQuery,
+  useLazyGetPersonalBlogQuery,
+  useUpdateBlogMutation,
+  useDeleteBlogMutation
 } = blogApi;

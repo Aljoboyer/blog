@@ -4,6 +4,6 @@ import { BASE_URL } from '../../constent/urls';
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  tagTypes: ['bloglist'],
+  tagTypes: ['bloglist', 'personalblogs'],
   endpoints: () => ({}),
 });

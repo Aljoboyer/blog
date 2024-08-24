@@ -18,8 +18,6 @@ const BlogDetails = () => {
     }
   },[params?.id])
 
-  console.log(blogDetails)
-
   return (
     <RootContainer>
         {
