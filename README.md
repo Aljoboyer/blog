@@ -9,9 +9,7 @@ To clone this codebase, check the dropdown menu button on the right side. Click 
 
 ### Installation
 
-After cloning the codebase, navigate to the project directory by running `cd blog-app`. Then, open the codebase in your code editor. In the terminal (e.g., Git Bash) of your code editor, run **`npm i`**.
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After cloning the codebase, navigate to the project directory by running `cd blog-app`. Then, open the codebase in your code editor. In the terminal (e.g., Git Bash) of your code editor, run **`npm i`**. then website will be run into your browser.
 
 ### Run Application
 
