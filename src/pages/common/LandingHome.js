@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import RootContainer from '../../components/common/RootContainer';
 import BlogCard from '../../components/BlogCard/BlogCard';
@@ -7,9 +7,14 @@ import { FiLoader } from "react-icons/fi";
 
 const LandingHome = () => {
   const navigate = useNavigate()
-  const { data: blogData , isFetching} = useGetBlogsQuery({
+  const { data: blogData , isFetching, refetch} = useGetBlogsQuery({
     refetchOnMountOrArgChange: true,
   });
+
+  useEffect(() => {
+    refetch()
+  },[])
+
   console.log('blogData --------->>', blogData, isFetching)
 
   return (

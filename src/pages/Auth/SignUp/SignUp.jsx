@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { useSignUpMutation } from '../../../redux/features/authApi';
 import SignupImg from '../../../assets/sign-up.jpg'
 import RootContainer from '../../../components/common/RootContainer';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../redux/slices/commonSlice';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -18,6 +20,7 @@ const SignUp = () => {
    const [phoneErr, setPhoneErr] = useState('');
    const [loading, setLoading] = useState(false)
    const [addSignUp, { }] = useSignUpMutation();
+   const dispatch = useDispatch()
 
    const validatehandler = () => {
     let isValid  = true;
@@ -67,7 +70,7 @@ const SignUp = () => {
 
     if(response?.data?.token){
         localStorage.setItem('blog-token', response?.data?.token)
-
+        dispatch(setUserData(response?.data?.result))
         toast.success('Signed-up successfully!', {
             position: "top-right",
             autoClose: 1500,

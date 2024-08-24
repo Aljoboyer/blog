@@ -24,7 +24,7 @@ const BlogWrite = () => {
     const [descriptionErr, setDescriptionErr] = useState('')
     const [imgErr, setImgErr] = useState('')
     const userData = useSelector((state) => state.commonstore.user)
-
+  console.log('userData', userData)
   const publishHandler = async() => {
     let isValid = true
     setLoading(true)
