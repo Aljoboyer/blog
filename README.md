@@ -1,4 +1,4 @@
-# How To Run This Applicaton
+# How To Run This Application
 
 ## **Note: To use this application properly you have to run server first. To get serverside codebase use this link  [Blog_App_Server](https://github.com/Aljoboyer/blog_server).
 **
