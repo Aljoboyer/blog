@@ -53,64 +53,55 @@ const Login = () => {
 
     console.log("response ===>", response)
 
-    if(response?.data?.message == "Logged-in successfully!"){
-      localStorage.setItem('pixplayToken', response?.data?.token)
-
-        toast.success('Logged-in successfully!', {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            onOpen: () => {
-                setLoading(false)
-                navigate('/dashboard/admin-home')
-            },
-            onClose: () => {
-            },
-            });
-    }
-    else if(response?.data?.success == 0 && response?.data?.data == 'User not exists, Please signup!'){
-      setLoginErr({emailErr: 'User not exists, Please signup!'})
-        toast.error('Login Failed', {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            onOpen: () => {
-                setLoading(false)
-                
-            },
-            onClose: () => {
-            },
-            });
-    }
-    else if(response?.data?.success == 0 && response?.data?.data == 'Password is wrong or invalid!'){
-      setLoginErr({passwordErr: 'Password is wrong or invalid'})
-        toast.error('Login Failed', {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            onOpen: () => {
-                setLoading(false)
-                
-            },
-            onClose: () => {
-            },
-            });
-    }
+    if(response?.data?.token){
+      localStorage.setItem('blog-token', response?.data?.token)
+      
+      toast.success('Signed-up successfully!', {
+          position: "top-right",
+          autoClose: 1500,
+          closeOnClick: true,
+          theme: "light",
+          onOpen: () => {
+              setLoading(false)
+              navigate('/')
+          }
+          });
+  }
+  else if(response?.error?.data?.message == "User doesn't exist"){
+    setLoginErr({...loginErr, emailErr: "User doesn't exist"})
+    toast.error('User does not exists', {
+        position: "top-right",
+        autoClose: 1000,
+        closeOnClick: true,
+        theme: "light",
+        onOpen: () => {
+            setLoading(false)
+        }
+        })
+      }
+    else if(response?.error?.data?.message == "Invalid credentials"){
+      setLoginErr({...loginErr, passwordErr: "Password is wrong"})
+      toast.error('Password is wrong', {
+          position: "top-right",
+          autoClose: 1000,
+          closeOnClick: true,
+          theme: "light",
+          onOpen: () => {
+              setLoading(false)
+          }
+          })
+        }
+    else{
+      toast.error('Login Failed', {
+          position: "top-right",
+          autoClose: 1000,
+          closeOnClick: true,
+          theme: "light",
+          onOpen: () => {
+              setLoading(false)
+          }
+          })
+        }
   }
 
   return (
